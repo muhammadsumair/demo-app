@@ -1,0 +1,31 @@
+<header>
+  <nav class="navbar navbar-default">
+    <a class="navbar-brand" href="#">DEMO APP</a>
+  </nav>
+</header>
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Number of pages</th>
+        <th>Date of publication</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let book of bookService.books | orderBy: key | paginate: { itemsPerPage: 5, currentPage: p };">
+        <td>{{book.name}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.numberOfPages}}</td>
+        <td>{{book.dateOfPublication}}</td>
+        <td routerLink="/books/detail/{{book.id}}">View Detail</td>
+      </tr>
+      </tbody>
+      <br>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </table>
+  </div>
+</div>
